@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	{% load socialaccount %}
+
+
+	{% if user.is_authenticated %}
+	<p>Welcome, {{user.username}}, to Chix Analytical Homepage</p>
+	{% else %}
+	<a href="{% provider_login_url 'github' %}"> Sign Up with github</a>
+	<a href="{% provider_login_url 'google' %}"> Sign Up with google</a>
+
+	{% endif%}
+</body>
+
+</html>

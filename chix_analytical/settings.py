@@ -11,11 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
-from pathlib import Path
 import warnings
+from pathlib import Path
 
 import dj_database_url
-
 from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -47,8 +46,16 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     # local apps
-    "account.apps.AccountConfig",
+    "crispy_forms",
     "versatileimagefield",
+    # allauth
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    # enable providers
+    "allauth.socialaccount.providers.github",
+    "allauth.socialaccount.providers.google",
 ]
 
 MIDDLEWARE = [
@@ -80,6 +87,30 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKEND = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+# allauth
+SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "offline",
+        },
+    }
+}
+
+LOGIN_REDIRECT_URL = "shop:home"
 
 WSGI_APPLICATION = "chix_analytical.wsgi.application"
 
@@ -127,6 +158,17 @@ USE_L10N = True
 
 USE_TZ = True
 
+"""
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_REDIRECT_EXEMPT = []
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SLL_HEADER = {'HTTP_X_FORWARDED_PROTO': 'https'}
+"""
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -147,3 +189,6 @@ MEDIA_ROOT = str(BASE_DIR.joinpath("media"))
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
