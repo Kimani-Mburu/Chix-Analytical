@@ -38,7 +38,8 @@
     <link rel="stylesheet " href="{% static 'css/owl-carousel.css' %} ">
     <!-- Slicknav -->
     <link rel="stylesheet " href="{% static 'css/slicknav.min.css' %} ">
-
+    <!-- Venom WhatsApp Button -->
+    <link rel="stylesheet" href="{% static 'venom/venom-button.min.css' %}" />
     <!-- Eshop StyleSheet -->
     <link rel="stylesheet " href="{% static 'css/reset.css' %} ">
     <link rel="stylesheet " href="{% static 'css/base.css' %} ">
@@ -282,8 +283,8 @@
         <!--/ End Header Inner -->
     </header>
     <!--/ End Header -->
-
-
+    <!-- WhatsApp Chat Button -->
+    <div id="myButton"></div>
     {% comment %} MESSAGES {% endcomment %}
 
     <div class="messages " id="messages ">
@@ -335,6 +336,24 @@
     <script src="{% static 'js/easing.js' %} "></script>
     <!-- Active JS -->
     <script src="{% static 'js/active.js' %} "></script>
+    <!-- Venom WhatsApp scripts -->
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
+    <script src="{% static 'venom/venom-button.min.js' %}"></script>
+    <script>
+        $('#myButton').venomButton({
+            phone: '254701063225',
+            popupMessage: 'Hello, how can we help you?',
+            message: "",
+            showPopup: true,
+            position: "left",
+            linkButton: false,
+            showOnIE: false,
+            headerTitle: 'Talk to us',
+            headerColor: '#25d366',
+            backgroundColor: '#25d366',
+            buttonImage: '<img src="static/venom/whatsapp.svg" />'
+        });
+    </script>
 </body>
 
 </html>
