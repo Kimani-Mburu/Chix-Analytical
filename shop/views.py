@@ -6,3 +6,6 @@ from django.views.generic import TemplateView
 
 class Home(TemplateView):
     template_name = "shop/index.html"
+
+class Cart(TemplateView):
+    template_name = "shop/cart.html"
