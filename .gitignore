@@ -1,6 +1,0 @@
-.vscode
-account/__pycache__/
-account/migrations/__pycache__
-chix_analytical/__pycache__/
-staticfiles/
-shop/__pycache__/

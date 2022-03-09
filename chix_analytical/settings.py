@@ -54,8 +54,6 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     # enable providers
-    "allauth.socialaccount.providers.github",
-    "allauth.socialaccount.providers.google",
 ]
 
 MIDDLEWARE = [
@@ -98,17 +96,6 @@ AUTHENTICATION_BACKEND = [
 # allauth
 SITE_ID = 1
 
-SOCIALACCOUNT_PROVIDERS = {
-    "google": {
-        "SCOPE": [
-            "profile",
-            "email",
-        ],
-        "AUTH_PARAMS": {
-            "access_type": "offline",
-        },
-    }
-}
 
 LOGIN_REDIRECT_URL = "shop:home"
 
@@ -119,10 +106,14 @@ WSGI_APPLICATION = "chix_analytical.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default="postgres://chix:chix_2021@localhost:5432/chix_analytical",
-        conn_max_age=600,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'chix_analytical', 
+        'USER': 'postgres', 
+        'PASSWORD': 'tech.kita01',
+        'HOST': '127.0.0.1', 
+        'PORT': '5432',
+    }
 }
 
 
