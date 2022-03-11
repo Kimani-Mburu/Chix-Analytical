@@ -24,15 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = '*'
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
-
-if not SECRET_KEY and DEBUG:
-    warnings.warn("SECRET_KEY not configured, using a random temporary key.")
-    SECRET_KEY = get_random_secret_key()
-
+SECRET_KEY ='*'
 
 # Application definition
 
